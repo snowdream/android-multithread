@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Android-multithread by snowdream</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/snowdream/android-multithread">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/snowdream/android-multithread/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/snowdream/android-multithread/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Android-multithread</h1>
+          <p>android lib - multithread</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/snowdream">snowdream</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="android-multithread" class="anchor" href="#android-multithread"><span class="octicon octicon-link"></span></a>android-multithread</h1>
+
+<h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>android lib - multithread<br>
+add a listener to the AsyncTask.</p>
+
+<h2>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>Download <a href="https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/multithread/0.0.2/multithread-0.0.2.jar">the latest jar</a> or grab via Maven:</p>
+
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.github.snowdream.android.util.concurrent<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>multithread<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>1.inherit a class from com.github.snowdream.android.util.concurrent.AsyncTask,explicit inherit the construction from the super class.</p>
+
+<div class="highlight highlight-java"><pre><span class="c1">//inherit a class from com.github.snowdream.android.util.concurrent.AsyncTask</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DownloadFilesTask</span> <span class="kd">extends</span> <span class="n">AsyncTask</span><span class="o">&lt;</span><span class="n">URL</span><span class="o">,</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+ <span class="kd">public</span> <span class="nf">DownloadFilesTask</span><span class="o">(</span><span class="n">TaskListener</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">listener</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">//explicit inherit the construction from the super class.</span>
+      <span class="kd">super</span><span class="o">(</span><span class="n">listener</span><span class="o">);</span>
+ <span class="o">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * TODO </span>
+<span class="cm"> * if error occurs,carry it out.</span>
+<span class="cm"> * </span>
+<span class="cm"> * if (listener != null) {</span>
+<span class="cm"> *    listener.onError(new Throwable());</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span>
+<span class="kd">protected</span> <span class="n">Long</span> <span class="nf">doInBackground</span><span class="o">(</span><span class="n">URL</span><span class="o">...</span> <span class="n">urls</span><span class="o">)</span> <span class="o">{</span>
+     <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">urls</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+     <span class="kt">long</span> <span class="n">totalSize</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+         <span class="n">totalSize</span> <span class="o">+=</span> <span class="mi">10</span><span class="o">;</span>
+         <span class="n">publishProgress</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="o">((</span><span class="n">i</span> <span class="o">/</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span> <span class="n">count</span><span class="o">)</span> <span class="o">*</span> <span class="mi">100</span><span class="o">));</span>
+         <span class="c1">// Escape early if cancel() is called</span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">isCancelled</span><span class="o">())</span> <span class="k">break</span><span class="o">;</span>
+         <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+     <span class="o">}</span>
+     <span class="k">return</span> <span class="n">totalSize</span><span class="o">;</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>2.define a TaskListener.please pay attention to the generic parameter Integer and Long,is the same as above.</p>
+
+<div class="highlight highlight-java"><pre><span class="kd">private</span> <span class="n">TaskListener</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">listener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TaskListener</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;(){</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onStart</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onStart</span><span class="o">();</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"onStart()"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProgressUpdate</span><span class="o">(</span><span class="n">Integer</span><span class="o">...</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onProgressUpdate</span><span class="o">(</span><span class="n">values</span><span class="o">);</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"onProgressUpdate(values)"</span> <span class="o">+</span> <span class="n">values</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">Long</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onSuccess</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"onSuccess(result)"</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCancelled</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCancelled</span><span class="o">();</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"onCancelled()"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">thr</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onError</span><span class="o">(</span><span class="n">thr</span><span class="o">);</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"onError()"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFinish</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onFinish</span><span class="o">();</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"onFinish()"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">};</span>
+</pre></div>
+
+<p>3.construct a AsyncTask,and carry it out.   </p>
+
+<div class="highlight highlight-java"><pre><span class="n">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"http://www.baidu.com/"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MalformedURLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// TODO Auto-generated catch block</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="k">new</span> <span class="nf">DownloadFilesTask</span><span class="o">(</span><span class="n">listener</span><span class="o">).</span><span class="na">execute</span><span class="o">(</span><span class="n">url</span><span class="o">,</span><span class="n">url</span><span class="o">,</span><span class="n">url</span><span class="o">);</span>
+</pre></div>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code> Copyright (C) 2013 Snowdream Mobile
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+</code></pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
