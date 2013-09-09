@@ -3,4 +3,7 @@
     package="com.github.snowdream.android.util"
     android:versionCode="1"
     android:versionName="0.0.1-SNAPSHOT" >
+    <uses-sdk
+        android:minSdkVersion="3"
+        android:targetSdkVersion="17" />
 </manifest>

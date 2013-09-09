@@ -16,12 +16,15 @@
 
 package com.github.snowdream.android.util;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+
 /**
  * @author snowdream <yanghui1986527@gmail.com>
  * @date 2013年9月8日
  * @version v1.0
  */
-public class AsyncTask<Params, Progress, Result> extends
+public abstract class AsyncTask<Params, Progress, Result> extends
         android.os.AsyncTask<Params, Progress, Result> {
     private TaskListener<Progress, Result> listener = null;
 
@@ -34,15 +37,18 @@ public class AsyncTask<Params, Progress, Result> extends
         this.listener = listener;
     }
 
+    /**
+     * TODO <BR/>
+     * if error occurs,carry it out.<BR/>
+     * 
+     * <pre>
+     * if (listener != null) {
+     *    listener.onError(new Throwable());
+     * }
+     * </pre>
+     */
     @Override
-    protected Result doInBackground(Params... arg0) {
-        // TODO if error occurs,carry it out.
-        // if (listener != null) {
-        // listener.onError(new Throwable());
-        // }
-
-        return null;
-    }
+    protected abstract Result doInBackground(Params... params);
 
     @Override
     protected void onCancelled() {
@@ -53,9 +59,14 @@ public class AsyncTask<Params, Progress, Result> extends
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCancelled(Result result) {
-        super.onCancelled(result);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            super.onCancelled(result);
+        }else{
+            super.onCancelled();
+        }
     }
 
     @Override
