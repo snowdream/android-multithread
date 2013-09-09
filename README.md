@@ -1,7 +1,8 @@
 #android-multithread
 
 ##Introduction
-android lib - multithread
+android lib - multithread    
+add a listener to the AsyncTask.
 
 ##Download
 Download [the latest jar][1] or grab via Maven:
