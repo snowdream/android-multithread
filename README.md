@@ -126,4 +126,4 @@ new DownloadFilesTask(listener).execute(url,url,url);
  limitations under the License.
 ```
 
-[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/multithread/0.0.2/multithread-0.0.2.jar
+[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/concurrent/multithread/0.0.2/multithread-0.0.2.jar
