@@ -14,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.github.snowdream.android.util;
+package com.github.snowdream.android.util.concurrent;
 
 import android.annotation.TargetApi;
 import android.os.Build;
