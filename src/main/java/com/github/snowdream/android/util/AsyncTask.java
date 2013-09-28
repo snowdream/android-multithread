@@ -34,6 +34,15 @@ public class AsyncTask<Params, Progress, Result> extends
         this.listener = listener;
     }
 
+    
+    public TaskListener<Progress, Result> getListener() {
+        return listener;
+    }
+
+    public void setListener(TaskListener<Progress, Result> listener) {
+        this.listener = listener;
+    }
+
     @Override
     protected Result doInBackground(Params... arg0) {
         // TODO if error occurs,carry it out.
