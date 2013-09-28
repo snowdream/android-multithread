@@ -1,5 +1,5 @@
 
-package com.github.snowdream.android.util;
+package com.github.snowdream.android.util.concurrent;
 
 public class TaskListener<Progress, Result> {
     /**
