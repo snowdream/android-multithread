@@ -127,7 +127,7 @@ import java.util.concurrent.Executor;
  */
 public abstract class AsyncTask<Params, Progress, Result> extends
         android.os.AsyncTask<Params, Progress, Result> {
-    private TaskListener<Progress, Result> listener = null;
+    protected TaskListener<Progress, Result> listener = null;
 
     public AsyncTask() {
         super();
@@ -135,6 +135,15 @@ public abstract class AsyncTask<Params, Progress, Result> extends
 
     public AsyncTask(TaskListener<Progress, Result> listener) {
         super();
+        this.listener = listener;
+    }
+
+    
+    public TaskListener<Progress, Result> getListener() {
+        return listener;
+    }
+
+    public void setListener(TaskListener<Progress, Result> listener) {
         this.listener = listener;
     }
 
