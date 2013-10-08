@@ -174,7 +174,10 @@ public abstract class AsyncTask<Params, Progress, Result> extends
     protected void onPostExecute(Result result) {
         super.onPostExecute(result);
         if (listener != null) {
-            listener.onSuccess(result);
+            if (result != null) {
+                listener.onSuccess(result);
+            }
+            
             listener.onFinish();
         }
     }
