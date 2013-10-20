@@ -1,0 +1,10 @@
+apply plugin: 'license'
+
+license {
+    header rootProject.file('HEADER')
+    strictCheck = true
+    useDefaultMappings = true
+    ext.year = Calendar.getInstance().get(Calendar.YEAR)
+    ext.name = 'Snowdream Mobile'
+    ext.email = 'yanghui1986527@gmail.com'
+}

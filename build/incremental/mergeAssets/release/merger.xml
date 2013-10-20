@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="/home/snowdream/workspace/git/android-multithread/assets" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="/home/snowdream/workspace/git/android-multithread/src/release/assets" />
+    </dataSet>
+
+</merger>
