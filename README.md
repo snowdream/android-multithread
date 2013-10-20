@@ -14,7 +14,7 @@ Download [the latest jar][1] or grab via Maven:
 <dependency>
   <groupId>com.github.snowdream.android.util.concurrent</groupId>
   <artifactId>multithread</artifactId>
-  <version>0.0.6</version>
+  <version>0.0.7</version>
 </dependency>
 ```
 
@@ -129,4 +129,4 @@ new DownloadFilesTask(listener).execute(url,url,url);
  limitations under the License.
 ```
 
-[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/concurrent/multithread/0.0.6/multithread-0.0.6.jar
+[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/concurrent/multithread/0.0.7/multithread-0.0.7.jar
