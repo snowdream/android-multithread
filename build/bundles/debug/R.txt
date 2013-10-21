@@ -1,2 +1,0 @@
-int string hello 0x7f020000
-int string lib_name 0x7f020001

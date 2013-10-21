@@ -1,5 +1,0 @@
-# incremental data. DO NOT EDIT.
-# format is <lastModified> <length> <SHA-1> <path>
-# Encoding is UTF-8
-1382284991000 7337 6a3384410489a02db9365d086153c8dec2c7336a /home/snowdream/workspace/git/android-multithread/src/main/java/com/github/snowdream/android/util/concurrent/AsyncTask.java
-1380393484000 1433 571d19f3307071ffe855bc939d30f1f8ffef9770 /home/snowdream/workspace/git/android-multithread/src/main/java/com/github/snowdream/android/util/concurrent/TaskListener.java

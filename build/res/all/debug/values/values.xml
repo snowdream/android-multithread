@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!-- From: file:/home/snowdream/workspace/git/android-multithread/res/values/strings.xml -->
-    <string name="hello">Hello multithread!</string>
-    <string name="lib_name">multithread</string>
-
-</resources>
