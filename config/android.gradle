@@ -1,0 +1,62 @@
+apply plugin: 'android'
+
+dependencies {
+}
+
+android {
+    compileSdkVersion Integer.parseInt(project.COMPILE_SDK_VERSION)
+    buildToolsVersion project.BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        versionCode  Integer.parseInt(project.VERSION_CODE)
+        versionName  project.VERSION_NAME
+        minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.TARGET_SDK_VERSION)
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("KEYSTORE"))
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    applicationVariants.all { variant ->
+        def apk = variant.packageApplication.outputFile;
+        def newName = "";
+
+        newName = apk.name.replace(project.name,POM_NAME + "-v" + defaultConfig.versionName);
+        newName = newName.replace("-" + variant.buildType.name, "");
+        newName = newName.replace(".apk", "-" + variant.buildType.name.toLowerCase() + ".apk");
+
+        variant.packageApplication.outputFile = new File(apk.parentFile, newName);
+        if (variant.zipAlign) {
+            variant.zipAlign.outputFile = new File(apk.parentFile, newName.replace("-unaligned", ""));
+        }
+    }
+
+    applicationVariants.all { variant ->
+
+        task("generate${variant.name}Javadoc", type: Javadoc) {
+            title = "android lib - downloader $version API"
+            description "Generates Javadoc for $variant.name."
+            source = variant.javaCompile.source
+            ext.androidJar =
+                    "${android.plugin.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+            classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+            options.links("http://docs.oracle.com/javase/7/docs/api/");
+            options.linksOffline("http://d.android.com/reference","${android.plugin.sdkDirectory}/docs/reference");
+            exclude '**/BuildConfig.java'
+            exclude '**/R.java'
+            exclude '**/Log2File.java'
+        }
+    }
+}
