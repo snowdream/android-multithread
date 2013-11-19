@@ -1,7 +1,7 @@
 apply plugin: 'license'
 
 license {
-    header rootProject.file('HEADER')
+    header rootProject.file('config/HEADER')
     strictCheck = true
     useDefaultMappings = true
     ext.year = Calendar.getInstance().get(Calendar.YEAR)
