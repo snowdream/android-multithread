@@ -210,7 +210,7 @@ public abstract class AsyncTask<Params, Progress, Result> extends
     /**
      * set the default Executor
      * 
-     * @param exec
+     * @param executor
      */
     public static void setDefaultExecutor(Executor executor) {
         Class<?> c = null;

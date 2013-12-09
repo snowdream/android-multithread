@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.snowdream.android.util.concurrent"
-    android:versionCode="1"
-    android:versionName="0.0.1-SNAPSHOT" >
-    <uses-sdk
-        android:minSdkVersion="3"
-        android:targetSdkVersion="17" />
-</manifest>
