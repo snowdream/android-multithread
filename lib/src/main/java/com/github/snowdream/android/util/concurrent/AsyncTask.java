@@ -19,6 +19,8 @@ package com.github.snowdream.android.util.concurrent;
 import android.annotation.TargetApi;
 import android.os.Build;
 
+import com.github.snowdream.android.util.Log;
+
 import java.lang.reflect.Field;
 import java.util.concurrent.Executor;
 
@@ -26,7 +28,7 @@ import java.util.concurrent.Executor;
  * 1.inherit a class from
  * com.github.snowdream.android.util.concurrent.AsyncTask,explicit inherit the
  * construction from the super class.
- * 
+ * <p/>
  * <pre>
  *  * inherit a class from com.github.snowdream.android.util.concurrent.AsyncTask
  * public class DownloadFilesTask extends AsyncTask<URL, Integer, Long> {
@@ -34,11 +36,11 @@ import java.util.concurrent.Executor;
  *        * explicit inherit the construction from the super class.
  *       super(listener);
  *  }
- *        
+ *
  *  *
- *  * TODO 
+ *  * TODO
  *  * if error occurs,carry it out.
- *  * 
+ *  *
  *  * if (listener != null) {
  *  *    listener.onError(new Throwable());
  *  * }
@@ -61,54 +63,54 @@ import java.util.concurrent.Executor;
  *  }
  * }
  * </pre>
- * 
+ * <p/>
  * 2.define a TaskListener.please pay attention to the generic parameter Integer
  * and Long,is the same as above.
- * 
+ * <p/>
  * <pre>
  * private TaskListener&lt;Integer, Long&gt; listener = new TaskListener&lt;Integer, Long&gt;() {
- * 
+ *
  *     &#064;Override
  *     public void onStart() {
  *         super.onStart();
  *         Log.i(&quot;onStart()&quot;);
  *     }
- * 
+ *
  *     &#064;Override
  *     public void onProgressUpdate(Integer... values) {
  *         super.onProgressUpdate(values);
  *         Log.i(&quot;onProgressUpdate(values)&quot; + values[0]);
  *     }
- * 
+ *
  *     &#064;Override
  *     public void onSuccess(Long result) {
  *         super.onSuccess(result);
  *         Log.i(&quot;onSuccess(result)&quot; + result);
  *     }
- * 
+ *
  *     &#064;Override
  *     public void onCancelled() {
  *         super.onCancelled();
  *         Log.i(&quot;onCancelled()&quot;);
  *     }
- * 
+ *
  *     &#064;Override
  *     public void onError(Throwable thr) {
  *         super.onError(thr);
  *         Log.i(&quot;onError()&quot;);
  *     }
- * 
+ *
  *     &#064;Override
  *     public void onFinish() {
  *         super.onFinish();
  *         Log.i(&quot;onFinish()&quot;);
  *     }
- * 
+ *
  * };
  * </pre>
- * 
+ * <p/>
  * 3.construct a AsyncTask,and carry it out.
- * 
+ * <p/>
  * <pre>
  * URL url = null;
  * try {
@@ -117,13 +119,13 @@ import java.util.concurrent.Executor;
  *      *  TODO Auto-generated catch block
  *     e.printStackTrace();
  * }
- *         
+ *
  * new DownloadFilesTask(listener).execute(url,url,url);
  * </pre>
- * 
+ *
  * @author snowdream <yanghui1986527@gmail.com>
- * @date 2013年9月8日
  * @version v1.0
+ * @date 2013年9月8日
  */
 public abstract class AsyncTask<Params, Progress, Result> extends
         android.os.AsyncTask<Params, Progress, Result> {
@@ -138,7 +140,7 @@ public abstract class AsyncTask<Params, Progress, Result> extends
         this.listener = listener;
     }
 
-    
+
     public TaskListener<Progress, Result> getListener() {
         return listener;
     }
@@ -150,7 +152,7 @@ public abstract class AsyncTask<Params, Progress, Result> extends
     /**
      * TODO <BR/>
      * if error occurs,carry it out.<BR/>
-     * 
+     * <p/>
      * <pre>
      * if (listener != null) {
      *     listener.onError(new Throwable());
@@ -186,7 +188,7 @@ public abstract class AsyncTask<Params, Progress, Result> extends
             if (result != null) {
                 listener.onSuccess(result);
             }
-            
+
             listener.onFinish();
         }
     }
@@ -209,7 +211,7 @@ public abstract class AsyncTask<Params, Progress, Result> extends
 
     /**
      * set the default Executor
-     * 
+     *
      * @param executor
      */
     public static void setDefaultExecutor(Executor executor) {
@@ -223,18 +225,22 @@ public abstract class AsyncTask<Params, Progress, Result> extends
             field.setAccessible(false);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
+            Log.e("IllegalArgumentException", e);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            Log.e("ClassNotFoundException", e);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
+            Log.e("NoSuchFieldException", e);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+            Log.e("IllegalAccessException", e);
         }
     }
 
     /**
      * get the default Executor
-     * 
+     *
      * @return the default Executor
      */
     public static Executor getDefaultExecutor() {
@@ -250,12 +256,16 @@ public abstract class AsyncTask<Params, Progress, Result> extends
             field.setAccessible(false);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
+            Log.e("IllegalArgumentException", e);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            Log.e("ClassNotFoundException", e);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
+            Log.e("NoSuchFieldException", e);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+            Log.e("IllegalAccessException", e);
         }
 
         return exec;

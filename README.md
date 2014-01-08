@@ -1,132 +1,40 @@
-#android-multithread
+#android-gradle-template
 
-##Introduction
-android lib - multithread    
-add a listener to the AsyncTask.
+a template for android with gradle
 
-##System requirements
-Android 1.5+
+##Features
+* Easy to develop the android apps or libraries with gradle
+* Support publishing an aar/jar file to Maven Central with Gradle
+* Support the library androidannotations,[https://github.com/excilys/androidannotations](https://github.com/excilys/androidannotations)
+* Configuring the build environment via gradle.properties
 
-##Download
-Download [the latest jar][1] or grab via Maven:
+##Requirements
+* Gradle 1.9 with the plugin 0.7.0
+* SDK with Build Tools 17.0.0 (released 5/16/2013)
 
-```xml
-<dependency>
-  <groupId>com.github.snowdream.android.util.concurrent</groupId>
-  <artifactId>multithread</artifactId>
-  <version>0.0.7</version>
-</dependency>
-```
+##HOW TO
+Learn how to develop with IntelliJ/Android Studio and Gradle.
+[http://snowdream.github.io/blog/android/2013/12/25/how-to-develop-with-android-gradle-template/](http://snowdream.github.io/blog/android/2013/12/25/how-to-develop-with-android-gradle-template/)
 
-##Usage
-1.inherit a class from com.github.snowdream.android.util.concurrent.AsyncTask,explicit inherit the construction from the super class.
+##Gradle Plugin User Guide
+[http://tools.android.com/tech-docs/new-build-system/user-guide](http://tools.android.com/tech-docs/new-build-system/user-guide)
 
-```java
-//inherit a class from com.github.snowdream.android.util.concurrent.AsyncTask
-public class DownloadFilesTask extends AsyncTask<URL, Integer, Long> {
- public DownloadFilesTask(TaskListener<Integer, Long> listener) {
-      //explicit inherit the construction from the super class.
-      super(listener);
- }
-       
-/**
- * TODO 
- * if error occurs,carry it out.
- * 
- * if (listener != null) {
- *    listener.onError(new Throwable());
- * }
- */
-protected Long doInBackground(URL... urls) {
-     int count = urls.length;
-     long totalSize = 0;
-     for (int i = 0; i < count; i++) {
-         totalSize += 10;
-         publishProgress((int) ((i / (float) count) * 100));
-         // Escape early if cancel() is called
-         if (isCancelled()) break;
-         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-     }
-     return totalSize;
- }
-}
-```
-
-2.define a TaskListener.please pay attention to the generic parameter Integer and Long,is the same as above.
-```java
-private TaskListener<Integer, Long> listener = new TaskListener<Integer, Long>(){
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("onStart()");
-    }
-
-    @Override
-    public void onProgressUpdate(Integer... values) {
-        super.onProgressUpdate(values);
-        Log.i("onProgressUpdate(values)" + values[0] );
-    }
-
-    @Override
-    public void onSuccess(Long result) {
-        super.onSuccess(result);
-        Log.i("onSuccess(result)" + result);
-    }
-
-    @Override
-    public void onCancelled() {
-        super.onCancelled();
-        Log.i("onCancelled()");
-    }
-
-    @Override
-    public void onError(Throwable thr) {
-        super.onError(thr);
-        Log.i("onError()");
-    }
-
-    @Override
-    public void onFinish() {
-        super.onFinish();
-        Log.i("onFinish()");
-    }
-	    
-};
-```
-
-3.construct a AsyncTask,and carry it out.   
-```java
-URL url = null;
-try {
-    url = new URL("http://www.baidu.com/");
-} catch (MalformedURLException e) {
-    // TODO Auto-generated catch block
-    e.printStackTrace();
-}
-        
-new DownloadFilesTask(listener).execute(url,url,url);
-```
+##Gradle User Guide
+[http://www.gradle.org/docs/current/userguide/userguide.html](http://www.gradle.org/docs/current/userguide/userguide.html)
 
 ##License
 ```
- Copyright (C) 2013 Snowdream Mobile
-  
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-  
- http://www.apache.org/licenses/LICENSE-2.0
-  
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-```
+Copyright (C) 2013 Snowdream Mobile <yanghui1986527@gmail.com>
 
-[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/concurrent/multithread/0.0.7/multithread-0.0.7.jar
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
