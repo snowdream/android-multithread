@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Snowdream Mobile <yanghui1986527@gmail.com>
+ * Copyright (C) 2014 Snowdream Mobile <yanghui1986527@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,11 @@ android {
     buildToolsVersion project.BUILD_TOOLS_VERSION
 
     defaultConfig {
-        versionCode  Integer.parseInt(project.VERSION_CODE)
-        versionName  project.VERSION_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_NAME
         minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(project.TARGET_SDK_VERSION)
+        packageName project.PACKAGE_NAME
     }
 
     signingConfigs {
@@ -52,13 +53,17 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+    
+    lintOptions {
+        abortOnError false
+    }
 }
 
 android.applicationVariants.all { variant ->
     def apk = variant.packageApplication.outputFile;
     def newName = "";
 
-    newName = apk.name.replace(project.name,POM_NAME + "-v" + android.defaultConfig.versionName);
+    newName = apk.name.replace(project.name, POM_NAME + "-v" + android.defaultConfig.versionName);
     newName = newName.replace("-" + variant.buildType.name, "");
     newName = newName.replace(".apk", "-" + variant.buildType.name.toLowerCase() + ".apk");
 
