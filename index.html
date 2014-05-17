@@ -1,43 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
     <title>Android-multithread by snowdream</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/snowdream/android-multithread">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/snowdream/android-multithread/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/snowdream/android-multithread/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+    <a id="forkme_banner" href="https://github.com/snowdream/android-multithread">View on GitHub</a>
+    <div class="shell">
 
-    <div class="wrapper">
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Android-multithread</h1>
+            <h2>android lib - multithread</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
 
-      <section>
-        <div id="title">
-          <h1>Android-multithread</h1>
-          <p>android lib - multithread</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/snowdream">snowdream</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/snowdream/android-multithread/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/snowdream/android-multithread/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
 
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
         <h1>
 <a name="android-multithread" class="anchor" href="#android-multithread"><span class="octicon octicon-link"></span></a>android-multithread</h1>
 
@@ -53,15 +61,25 @@ add a listener to the AsyncTask.</p>
 <p>Android 1.5+</p>
 
 <h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>android-log <a href="https://github.com/snowdream/android-log">https://github.com/snowdream/android-log</a></p>
+
+<h2>
 <a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
 
-<p>Download <a href="https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/concurrent/multithread/0.0.7/multithread-0.0.7.jar">the latest jar</a> or grab via Maven:</p>
+<p>Download <a href="https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/concurrent/multithread/1.0/multithread-1.0.jar">the latest jar</a> or grab via Maven:</p>
 
 <div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.github.snowdream.android.util.concurrent<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>multithread<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.0.7<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+<p>or Gradle:</p>
+
+<div class="highlight highlight-groovy"><pre>    <span class="n">compile</span> <span class="s1">'com.github.snowdream.android.util.concurrent:multithread:1.0'</span>
 </pre></div>
 
 <h2>
@@ -178,8 +196,20 @@ add a listener to the AsyncTask.</p>
 </code></pre>
       </section>
 
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/snowdream">snowdream</a> can be found on <a href="https://github.com/snowdream/android-multithread">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
